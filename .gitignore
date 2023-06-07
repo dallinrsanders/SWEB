@@ -1,0 +1,9 @@
+build
+build/*
+.vs
+.vs/*
+*.key
+*.csr
+*.crt
+includes/boost
+includes/boost/*
