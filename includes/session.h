@@ -53,5 +53,6 @@ private:
   Header thisHeader;
   std::string partialForm = "";
   int ContentLength = 0;
+  std::string response="";
 };
 #endif

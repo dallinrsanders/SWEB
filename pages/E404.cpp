@@ -6,7 +6,7 @@ bool E404Page::CheckRoute(Header thisHeader)
 HTMLResponse E404Page::Response(Header thisHeader)
 {
     std::string PageData = "<h1>Page Not Found!</h1>";
-    HTMLResponse response(PageData, thisHeader.WebSession);
+    HTMLResponse response(PageData, thisHeader.Session);
     response.setStatus(404);
     return response;
 }

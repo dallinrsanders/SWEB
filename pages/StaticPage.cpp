@@ -9,7 +9,7 @@ bool StaticPage::CheckRoute(Header thisHeader)
 }
 HTMLResponse StaticPage::Response(Header thisHeader)
 {
-    HTMLResponse response(fileContents, thisHeader.WebSession);
+    HTMLResponse response(fileContents, thisHeader.Session);
     std::vector<std::string> extensions;
     boost::split(extensions, URI, boost::is_any_of("."));
     if (extensions.size() > 1)
@@ -307,7 +307,7 @@ StaticPage::StaticPage(std::string path)
     std::string CurrentFolder = Utilities::GetCurrentFolder() + "static";
 
     std::vector<std::string> stringParts;
-    boost::split(stringParts, path.substr(CurrentFolder.length() + 1), boost::is_any_of("\\"));
+    boost::split(stringParts, path.substr(CurrentFolder.length() + 1), boost::is_any_of("\\/"));
     URI = "";
     for (size_t i = 0; i < stringParts.size(); i++)
     {

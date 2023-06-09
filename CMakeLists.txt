@@ -21,6 +21,8 @@ pages/E404.cpp
 target_include_directories(SWeb PRIVATE "includes")
 if(WIN32)
   target_link_libraries(SWeb wsock32 ws2_32 crypto ssl)
+else()
+  target_link_libraries(SWeb crypto ssl)
 endif()
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})

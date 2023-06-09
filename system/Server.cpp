@@ -1,6 +1,5 @@
 #include "Server.h"
 #include "URLParameter.h"
-void HandleMessage(SOCKET AcceptSocket, int DATA_BUFSIZE);
 
 std::mutex SessionLock;
 Server::Server(boost::asio::io_service &io_service, std::map<std::string, WebSession> *allSessionsPTR)

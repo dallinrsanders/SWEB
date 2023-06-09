@@ -1,16 +1,7 @@
 #include "Utilities.h"
-#include <filesystem>
-#include <fstream>
-#include <sstream>
 std::string Utilities::GetCurrentFolder()
 {
-    WCHAR path[MAX_PATH];
-    char fullPath[MAX_PATH];
-    WideCharToMultiByte(CP_ACP, (DWORD)NULL, path, -1, fullPath, MAX_PATH, NULL, NULL);
-    std::string response(fullPath);
-    size_t lastSlash = response.find_last_of('\\');
-    response.resize(lastSlash + 1);
-    return response;
+    return std::filesystem::current_path().string()+"/";
 }
 std::vector<std::string> Utilities::GetFiles(std::string path)
 {

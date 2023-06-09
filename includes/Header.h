@@ -13,7 +13,7 @@ public:
     std::vector<URLParameter> Parameters;
     std::string Page;
     std::vector<Cookie> Cookies;
-    WebSession * WebSession;
+    WebSession * Session;
     std::vector<URLParameter> PostParameters;
 };
 #endif

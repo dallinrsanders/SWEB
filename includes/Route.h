@@ -9,7 +9,7 @@ public:
     virtual bool CheckRoute(Header thisHeader) { return false; };
     virtual HTMLResponse Response(Header thisHeader)
     {
-        HTMLResponse response(std::string("Bye"), thisHeader.WebSession);
+        HTMLResponse response(std::string("Bye"), thisHeader.Session);
         return response;
     };
     bool CreateHeader(int ContentSize);

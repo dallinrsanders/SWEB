@@ -137,7 +137,7 @@ void session::handle_write(const boost::system::error_code &error)
                   {
                     foundSession = true;
                     allSessions->at(thisCookie.Value).UpdateTime();
-                    thisHeader.WebSession = &allSessions->at(thisCookie.Value);
+                    thisHeader.Session = &allSessions->at(thisCookie.Value);
                   }
                 }
                 else
@@ -190,14 +190,17 @@ void session::handle_write(const boost::system::error_code &error)
         thisSession.SetSession();
         thisSession.UpdateTime();
         allSessions->insert_or_assign(thisSession.GetSession(), thisSession);
-        thisHeader.WebSession = &allSessions->at(thisSession.GetSession());
+        thisHeader.Session = &allSessions->at(thisSession.GetSession());
       }
       SessionLock->unlock();
       if (!FormData)
       {
         Route *thisRoute = mainRouter->CheckRoute(thisHeader);
-        std::string response = thisRoute->Response(thisHeader).Output();
-        socket_.async_write_some(boost::asio::buffer(response, response.length()), boost::bind(&session::handle_handshake, this, boost::asio::placeholders::error));
+        response = thisRoute->Response(thisHeader).Output();
+        int responseSize = response.length();
+        auto test = boost::asio::buffer(response, response.length());
+        int test2 = test.size();
+        boost::asio::async_write(socket_,boost::asio::buffer(response, response.length()), boost::bind(&session::handle_handshake, this, boost::asio::placeholders::error));
       }
       else
       {
