@@ -163,10 +163,7 @@ void session::handle_write(const boost::system::error_code &error)
           }
           else if (URLEncoded == true && i == headerSplit.size() - 1 && headerSplit[i].size() > 2)
           {
-            std::vector<std::string> allLines;
-            boost::split(allLines, headerSplit[i], boost::is_any_of("\r"));
-            std::string thisLine = allLines[0];
-            boost::algorithm::trim(thisLine);
+            std::string thisLine = headerSplit[i].substr(0,ContentLength);
             std::vector<std::string> POSTParameter;
             boost::split(POSTParameter, thisLine, boost::is_any_of("&"));
             for (size_t k = 0; k < POSTParameter.size(); k++)
